@@ -23,7 +23,9 @@ fun ScreenB(navController: NavHostController, cadena: String) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Screen B " + cadena, fontSize = 36.sp)
+
+        ListItemCard(ListItem(R.drawable.ic_launcher_foreground, "Título 3", "Descripción breve del elemento 3."))
+
         Spacer(modifier = Modifier.height(65.dp))
         Button(onClick = {
             navController.navigate("C")
