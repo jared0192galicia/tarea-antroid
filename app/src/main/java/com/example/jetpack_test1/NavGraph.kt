@@ -10,7 +10,7 @@ fun Nav(){
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "A") {
         composable (route = "A"){
-            ScreenA(navController)
+            Form(navController)
         }
         composable ("B/{from}"){navBackStackEntry ->
             /* Extracting the id from the route */
