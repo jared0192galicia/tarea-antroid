@@ -1,10 +1,12 @@
 package com.example.jetpack_test1
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 
+@Preview
 @Composable
 fun Nav(){
     val navController = rememberNavController()
@@ -12,13 +14,8 @@ fun Nav(){
         composable (route = "A"){
             Form(navController)
         }
-        composable ("B/{from}"){navBackStackEntry ->
-            /* Extracting the id from the route */
-            val cad = navBackStackEntry.arguments?.getString("from")
-            /* We check if it's not null */
-            cad?.let { cadena->
-                ScreenB(navController, cadena)
-            }
+        composable ("B"){navBackStackEntry ->
+            ScreenB(navController)
         }
         composable (route = "C"){
             ScreenC(navController)

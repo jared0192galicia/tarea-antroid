@@ -14,35 +14,34 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 
 // Modelo de datos para cada elemento de la lista
 data class ListItem(
-    val imageRes: Int,
+    val imageRes: String,
     val title: String,
     val description: String
 )
 
-// Lista de ejemplo
-val _sampleItems = listOf(
-    ListItem(R.drawable.ic_launcher_foreground, "Título 1", "Descripción breve del elemento 1."),
-    ListItem(R.drawable.ic_launcher_foreground, "Título 2", "Descripción breve del elemento 2."),
-    ListItem(R.drawable.ic_launcher_foreground, "Título 3", "Descripción breve del elemento 3.")
-)
-
 // Composable principal para mostrar la lista
 @Composable
-fun ItemList(items: List<ListItem>) {
+fun ItemList(items: List<ListItem>, modifier: Modifier = Modifier) {
     LazyColumn(
-        modifier = Modifier.fillMaxSize().padding(8.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(8.dp), // ya no fillMaxSize()
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        contentPadding = PaddingValues(bottom = 8.dp)
     ) {
         items(items) { item ->
             ListItemCard(item)
         }
     }
 }
+
 
 // Composable para cada elemento individual
 @Composable
@@ -55,13 +54,14 @@ fun ListItemCard(item: ListItem) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             // Imagen
-            Image(
-                painter = painterResource(id = item.imageRes),
+            AsyncImage(
+                model = item.imageRes, // ahora es una URL (String)
                 contentDescription = item.title,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .size(64.dp)
                     .padding(end = 8.dp)
+
             )
 
             // Título y descripción

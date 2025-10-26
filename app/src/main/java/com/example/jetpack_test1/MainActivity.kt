@@ -12,7 +12,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             Jetpack_test1Theme {
                 // A surface container using the 'background' color from the theme
-Nav()
+                Nav()
             }
         }
     }

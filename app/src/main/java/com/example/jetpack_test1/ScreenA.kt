@@ -63,11 +63,23 @@ fun Form (navController: NavHostController) {
             Text(text = "Femenino")
         }
 
-        Button (
-            onClick = {mensaje = "Formulario enviado: $nombre, $email, $genero"},
-            modifier = Modifier.align(Alignment.CenterHorizontally)
-        ) {
-            Text("Enviar")
+
+        Row (verticalAlignment = Alignment.CenterVertically) {
+
+            Button (
+                onClick = {mensaje = "Formulario enviado: $nombre, $email, $genero"},
+//                modifier = Modifier.align(Alignment.CenterHorizontally)
+            ) {
+                Text("Enviar")
+            }
+
+            Button (
+                onClick = {navController.navigate("B")},
+                // modifier = Modifier.align(Alignment.CenterHorizontally)
+            ) {
+                Text("Ir a lista de imagenes")
+            }
+
         }
 
         if (mensaje.isNotEmpty()) {
